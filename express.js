@@ -29,6 +29,19 @@ router.post( '/message', function(req, res, next) {
   next();
 });
 
+server.get( '/list', function( req, res ) {
+  res.send( blackList );
+});
+
+//look-around
+server.post( '/addword', function( req, res ) {
+  var blaow = req.body;
+  for( var ka in blaow ) {
+    blackList[ka] = blaow[ka];
+  }
+  res.send( blackList );
+});
+
 var server = server.listen( 8888, function() {
   var host = server.address().address;
   var port = server.address().port;
